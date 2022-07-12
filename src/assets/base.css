@@ -14,6 +14,11 @@
   --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
   --vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);
   --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
+  --vt-c-divider-mid-thinner: 1px solid rgba(255, 255, 255, 0.5);
+  --vt-c-divider-mid-thin: 2px solid rgba(255, 255, 255, 0.5);
+  --vt-c-divider-mid-bold: 5px solid  rgba(255, 255, 255, 0.5);
+  --vt-c-divider-mid-bolder: 10px solid  rgba(255, 255, 255, 0.5);
+
 
   --vt-c-text-light-1: var(--vt-c-indigo);
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
@@ -48,6 +53,14 @@
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-2);
   }
+}
+
+/* semantic font-size variables for this project */
+:root {
+  --font-sm: 13px;
+  --font-med: 16px;
+  --font-lg: 18px;
+  --font-exLg: 32px;
 }
 
 *,
