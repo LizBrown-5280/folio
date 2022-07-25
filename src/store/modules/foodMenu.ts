@@ -8,89 +8,113 @@ export const state = {
   foods: {
     2105550: {
       name: 'Grilled Chicken',
+      nutrients: {},
     },
     2300272: {
       name: 'Baked Beans',
+      nutrients: {},
     },
     1892056: {
       name: 'Potato Salad',
+      nutrients: {},
     },
     2084998: {
       name: 'Salad w/ Balsamic Dressing',
+      nutrients: {},
     },
     1663014: {
       name: "Ruffle's BBQ Chips",
+      nutrients: {},
     },
     1961978: {
       name: 'Pecan Pie',
+      nutrients: {},
     },
     1928486: {
       name: 'Chocolate Chip Cookies',
+      nutrients: {},
     },
     519497: {
       name: 'Lipton Iced Tea',
+      nutrients: {},
     },
     2105492: {
       name: 'Country Time Lemonade',
+      nutrients: {},
     },
   },
-  nutrients: {
-    204: {
+  foodIdsOrder: ['2105550', '2300272', '1892056', '2084998', '1663014', '1961978', '1928486', '519497', '2105492'],
+  nutrients: [
+    {
+      number: 208,
+      name: 'Calories',
+      dailyValue: 2000,
+      unitName: 'kCal',
+    },
+    {
+      number: 204,
       name: 'Total Fat',
       dailyValue: 65,
       unitName: 'g',
     },
-    606: {
+    {
+      number: 606,
       name: 'Saturated Fat',
       classes: 'subValue',
       dailyValue: 20,
       unitName: 'g',
     },
-    605: {
+    {
+      number: 605,
       name: 'Trans Fat',
       classes: 'subValue',
       dailyValue: 300,
       unitName: 'g',
     },
-    601: {
+    {
+      number: 601,
       name: 'Cholesterol',
       dailyValue: 300,
       unitName: 'mg',
     },
-    307: {
+    {
+      number: 307,
       name: 'Sodium',
       dailyValue: 2300,
       unitName: 'mg',
     },
-    205: {
+    {
+      number: 205,
       name: 'Total Carbohydrates',
       dailyValue: 300,
       unitName: 'g',
     },
-    291: {
+    {
+      number: 291,
       name: 'Dietary Fiber',
       classes: 'subValue',
       dailyValue: 28,
       unitName: 'g',
     },
-    269: {
+    {
+      number: 269,
       name: 'Total Sugars',
       classes: 'subValue',
       dailyValue: 0,
       unitName: 'g',
     },
-    203: {
+    {
+      number: 203,
       name: 'Protein',
       dailyValue: 50,
       unitName: 'g',
     },
-  },
+  ],
 };
 
 export const mutations = {
   updateFoodItem(state: object, parsedFood: object) {
     state.foods[parsedFood.fdcId] = { ...state.foods[parsedFood.fdcId], ...parsedFood };
-    console.log('state.foods', state.foods);
   },
 };
 
@@ -119,5 +143,6 @@ export const actions = {
 
 export const getters = {
   getFoods: (state: Record<string, unknown>) => state.foods,
+  getFoodIdsOrder: (state: Record<string, unknown>) => state.foodIdsOrder,
   getNutrients: (state: Record<string, unknown>) => state.nutrients,
 };

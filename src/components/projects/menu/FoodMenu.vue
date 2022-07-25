@@ -5,8 +5,8 @@
       Summer BBQ!
     </h1>
     <div class="foodMenu">
-      <template v-for="food in foodList" :key="food.fdcId">
-        <FoodItem :food="food">{{ food.name }}</FoodItem>
+      <template v-for="foodId in foodIdsOrder" :key="foodId">
+        <FoodItem :food="foodList[foodId]" />
       </template>
     </div>
   </div>
@@ -18,10 +18,11 @@
 */
 import { onMounted } from 'vue';
 import { useStore } from 'vuex';
-// import FoodItem from './FoodItem.vue';
+import FoodItem from './FoodItem.vue';
 
 const store = useStore();
 const foodList = store.getters['foodMenu/getFoods'];
+const foodIdsOrder = store.getters['foodMenu/getFoodIdsOrder'];
 const nutrientsList = store.getters['foodMenu/getNutrients'];
 
 onMounted(async () => {
@@ -39,7 +40,7 @@ function createUSDAApiUrl() {
   const USDAApiUrl = 'https://api.nal.usda.gov/fdc/v1/foods?';
   const foodFormat = `format=full`;
   const fdcIds = Object.keys(foodList).reduce((prev, curr) => prev + `&fdcIds=${curr}`, '');
-  const nutrientsIds = Object.keys(nutrientsList).reduce((prev, curr) => prev + `&nutrients=${curr}`, '');
+  const nutrientsIds = nutrientsList.reduce((prev, curr) => prev + `&nutrients=${curr.number}`, '');
   const apiKey = `&api_key=8DxCARE3F2fCANyZAKmdnEVCXwv0bpIJ2MaOw1zx`;
   return `${USDAApiUrl}${foodFormat}${fdcIds}${nutrientsIds}${apiKey}`;
 }
@@ -47,7 +48,10 @@ function createUSDAApiUrl() {
 
 <style scoped>
 .menu {
-  margin-bottom: 100px;
+  @import '@/assets/base.css';
+
+  width: 800px;
+  margin: 0 auto 100px;
   background: url('@/assets/girl-grilling.png') no-repeat bottom 20px right -45px / 450px 450px,
     url('@/assets/fireworks.png') no-repeat center / cover;
 }
